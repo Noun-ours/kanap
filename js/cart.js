@@ -82,6 +82,10 @@ async function main(){
           console.log("testnouveau",chariotFind);
           chariotFind.itemQuantity=changeInput.value
           localStorage.setItem("panier", JSON.stringify(chariot));
+
+          const chariotAvecPrixFind=chariotAvecPrix.find(x=>((x.id == articleEnCours.dataset.id) || (x.couleur == articleEnCours.dataset.color)));
+          chariotAvecPrixFind.quantite=changeInput.value;
+          affichageDesTotaux();
         
 
         })
