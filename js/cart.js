@@ -63,6 +63,10 @@ async function main(){
         const chariotFiltrer=chariot.filter(x=>((x.idArticle != elementASupprimer.dataset.id) || (x.couleur != elementASupprimer.dataset.color)));
         localStorage.setItem("panier", JSON.stringify(chariotFiltrer));
         chariot = chariotFiltrer;
+        const chariotAvecPrixFiltrer=chariotAvecPrix.filter(x=>((x.id!= elementASupprimer.dataset.id) || (x.couleur != elementASupprimer.dataset.color)));
+        
+        chariotAvecPrix = chariotAvecPrixFiltrer;
+        affichageDesTotaux();
       })
       )
       
@@ -114,7 +118,6 @@ function affichageDesTotaux(){
     
     const spanTotalPrice=document.getElementById("totalPrice");
     spanTotalPrice.textContent=prixTotal.toFixed(2);
-  
   
 
 }
