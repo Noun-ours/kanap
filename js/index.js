@@ -1,3 +1,8 @@
+
+//pour afficher les produits sur la page d'accueil ;;;;;;;;;;
+
+
+
 console.log("bonjour javascript")
 fetch("http://localhost:3000/api/products")
 .then(reponse=>reponse.json())

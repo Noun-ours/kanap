@@ -43,7 +43,8 @@ async function main() {
 
   }
   affichageDesTotaux();
-
+//  ::::::::::::: pour la suppression d'un article;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+// 	Implémenter la suppression d'un article et la modification de la quantité sur la page "cart.html".
 
   const deleteItems = document.querySelectorAll(".deleteItem");
   deleteItems.forEach(deleteItemNode =>
@@ -79,24 +80,18 @@ async function main() {
 
   )
 
-
+// •	Implémenter l'affichage de la quantité totale et du prix total.
   function affichageDesTotaux() {
     let prixTotal = 0;
     let quantiteTotal = 0;
     for (const article of chariotAvecPrix) {
       quantiteTotal = quantiteTotal + Number(article.quantite);
       prixTotal = prixTotal + (Number(article.quantite) * Number(article.prix));
-
-
     }
-
     const spanTotalQuantity = document.getElementById("totalQuantity");
     spanTotalQuantity.textContent = quantiteTotal
-
     const spanTotalPrice = document.getElementById("totalPrice");
     spanTotalPrice.textContent = prixTotal.toFixed(2);
-
-
   }
 
   // pour le formulaire et les regex :::::::::::::::
@@ -129,6 +124,7 @@ async function main() {
     };
     console.log(commande);
     console.log();
+    // • la requête "Post" pour envoyer les informations de la commande au backend.
     fetch("http://localhost:3000/api/products/order", {
       method: "POST",
       headers: {
@@ -137,11 +133,11 @@ async function main() {
       body: JSON.stringify(commande),
     })
       .then(response => {
-        // console.log("test res", response);
         if (response.status == 201) {
           console.log("res ok");
           response.json().then(infoApi => {
             console.log(infoApi.orderId);
+            //pour supprimer le panier apres validation au backend;;;;;;;;;
             localStorage.removeItem("panier");
             window.location.href = "/html/confirmation.html?orderId="+ infoApi.orderId;
           })
@@ -177,7 +173,7 @@ async function main() {
 
 
 
-  // localStorage.setItem("order",JSON.stringify(order))
+
 
 
 
@@ -211,26 +207,6 @@ async function main() {
 
 
 
-  //     console.log( "chariot avec prix", chariotAvecPrix);
-  //     console.log("pour voir",order );
-  //     console.log(envoyerCommande);
-  //     console.log()
-  //     const formulaireDeValidation = { chariotAvecPrix, formulaireValide,order,envoyerCommande ,};
-  //     console.log(formulaireValide);
-  //     localStorage.setItem("formulaireValide", JSON.stringify(formulaireDeValidation));
-  //     console.log("teteste", formulaireDeValidation);
-  //     //localStorage.getItem("formulaireValide",JSON.parse(order))
-
-
-
-  //   function affichageValidation(){
-  //     const validationTotal=document.getElementById("orderId")
-  //     validationTotal.textContent=""
-
-  //   }
-
-
-
 
 
 
@@ -251,21 +227,13 @@ async function main() {
 
 
 
-//  ::::::::::::: pour la suppression d'un article;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-//::::::::::::::::::totalQuantity & totalPrice;;;;;;;;;;;;;;;;;;;;
-
-// 	Implémenter la suppression d'un article et la modification de la quantité sur la page "cart.html".
-//	Implémenter le total en quantité et en prix//
 
 
 
 
-// •	Implémenter l'affichage de la quantité totale et du prix total.
+
 // •	Valider les inputs du formulaire.
-// •	Préparer la requête "Post" pour envoyer les informations de la commande au backend.
+
 // •	Préparer le plan des test.
 
 
@@ -275,3 +243,6 @@ async function main() {
 // •	Compléter la validation du formulaire.
 // •	Envoyer les informations de la commande au backend.
 // •	Afficher le code de confirmation sur la page "confirmation.html".
+
+3
+.0

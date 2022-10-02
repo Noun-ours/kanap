@@ -1,4 +1,4 @@
-
+// pour envoyer la commande au backend
 function affichageOrderId() {
     const AfficheIdOrder = window.location.search
     const urlParams = new URLSearchParams(AfficheIdOrder)

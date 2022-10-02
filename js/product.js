@@ -62,7 +62,7 @@ function afficherCouleurs(tableauCouleurs) {
 
 }
 
-
+// stockage du panier dans le localstorage ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 const btnAjouterAuPanier = document.getElementById("addToCart");
 btnAjouterAuPanier.addEventListener("click", ajouterAuPanier);
