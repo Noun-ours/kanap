@@ -144,69 +144,90 @@ async function main() {
         }
       })
       .catch(erreur => console.log(erreur.message));
-  }
+    }
 
-  function formulaireValide(formUtilisateur) {
-    console.log();
+
+
+//document.forms["cart__order__form"].addEventListener("submit",function(e){
+
+//})
+    
+  //   formulaireValide()
+  //   const inputsTags=document.getElementsByTagName("input");
+  //   for (let i = 0;i <inputsTags.length;i++){
+  //     console.log(inputs[i]);
+  //     if (!inputs[i].value){
+  //       erreur="t'a fais une boulette";
+  //     }
+  //   }
+  //   document.getElementsByClassName("cart__order__form").addEventListener("submit",function(e){
+  //     alert('formulaire envoyé!');
+  // } )
+  
+    function formulaireValide(formUtilisateur) {
+      console.log("test");
     const firstName = document.getElementById("firstName").value
     const lastName = document.getElementById("lastName").value
     const address = document.getElementById("address").value
     const city = document.getElementById("city").value
     const email = document.getElementById("email").value
 
-
-
-
-
     const regexName = /^[A-Za-z][A-Za-zéç]+(\s[A-Za-z][A-Za-zéç]+)*$/;
-    const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const regexAddress = /^[A-Za-z0-9éç°',]+(\s[A-Za-z0-9éç°',]+)*$/;
+    const regexEmail = /^[A-Za-z0-9.-_]+[@]{1} [a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$ /;
+  //  const regexEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  
+  const regexAddress = /^[A-Za-z0-9éç°',]+(\s[A-Za-z0-9éç°',]+)*$/;
     const regexCity = /^[A-Z][A-Za-zéç]+(\s[A-Z][A-Za-zéç]+)*$/;
 
-
-    if (!regexName.test(firstName)) {
+    if (!regexAddress.test(address)){
+      alert("veuillez entrer une adresse valide")
+      return false
+    }
+    
+if(regexEmail.test(email)){
+  alert("veuillez entrer un email valide")
+  return false
+}
+    if (!regexName.test(firstName,lastName,city)) {
       alert("veuillez renseigner les champs valide")
+      // if (!regexEmail.test(email)) {
+      //   alert("veuillez renseigner les champs valide")
       return false;
     }
     return true;
   }
+  // const texteAlerte=(value)=>{
+  //   return `${value} : symbole et chiffre non autorisés `
+  // }
+  //  //if (!regexEmail.test(email)) {
+  //   // alert (texteAlerte("email") )("veuillez renseigner les champs valide")
+  //   function verifPrenom ( ){
+  //     const userMail =formulaireValide.email;
+  //     if(regexEmail(userMail)){
+  //       return true
+  //     }
+  //   }
+    
+    
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  // const formulaireUtilisateur=localStorage.getItem("formulaireValide");
-
-  // const formUtilisateur=JSON.parse(formulaireUtilisateur)
-
-  // document.querySelector("#firstName").value =order.firstName;
-  // document.querySelector("#lastName").setAttribute('value',formUtilisateur.lastName)
-  // console.log( "curieux", order);
-
-
-  // console.log( "blingbling" ,formUtilisateur);
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    // const formulaireUtilisateur=localStorage.getItem("formulaireValide");
+    
+    // const formUtilisateur=JSON.parse(formulaireUtilisateur)
+    
+    // document.querySelector("#firstName").value =order.firstName;
+    // document.querySelector("#lastName").setAttribute('value',formUtilisateur.lastName)
+      // console.log( "curieux", order);
+    
+      
+      // console.log( "blingbling" ,formUtilisateur);
+      
+      
+      
+      
 
 
 
@@ -243,6 +264,3 @@ async function main() {
 // •	Compléter la validation du formulaire.
 // •	Envoyer les informations de la commande au backend.
 // •	Afficher le code de confirmation sur la page "confirmation.html".
-
-3
-.0
