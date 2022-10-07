@@ -26,7 +26,7 @@ function handleData(canape) {
 
 
 }
-
+// pour l'affichage de l'image produit et son texte alternatif
 function makeImage(imageUrl, altTxt) {
     const image = document.createElement("img")
     //<img src="../images/logo.png" alt="Photographie d'un canapé"> 
@@ -87,7 +87,6 @@ function enregistrementPanier(produit) {
 
     }
     else {
-
         const produitExistant = chariot.find((article) => (article.idArticle === produit.idArticle && article.couleur === produit.couleur));
         if (!produitExistant) {
 

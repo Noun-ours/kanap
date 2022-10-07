@@ -43,8 +43,9 @@ async function main() {
 
   }
   affichageDesTotaux();
-//  ::::::::::::: pour la suppression d'un article;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-// 	Implémenter la suppression d'un article et la modification de la quantité sur la page "cart.html".
+
+  //  ::::::::::::: pour la suppression d'un article;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  // 	Implémenter la suppression d'un article et la modification de la quantité sur la page "cart.html".
 
   const deleteItems = document.querySelectorAll(".deleteItem");
   deleteItems.forEach(deleteItemNode =>
@@ -59,7 +60,7 @@ async function main() {
       affichageDesTotaux();
     })
   )
-
+  // pour changer la quantité d'article du panier
   const changeQuantites = document.querySelectorAll(".itemQuantity");
   changeQuantites.forEach(changeInput =>
     changeInput.addEventListener("click", function () {
@@ -77,10 +78,9 @@ async function main() {
 
 
     })
-
   )
 
-// •	Implémenter l'affichage de la quantité totale et du prix total.
+  // •	Implémenter l'affichage de la quantité totale et du prix total.
   function affichageDesTotaux() {
     let prixTotal = 0;
     let quantiteTotal = 0;
@@ -94,8 +94,7 @@ async function main() {
     spanTotalPrice.textContent = prixTotal.toFixed(2);
   }
 
-  // pour le formulaire et les regex :::::::::::::::
-
+  // pour le formulaire et les regex =========
   const btnCommander = document.getElementById("order");
   btnCommander.addEventListener("click", envoyerCommande);
   function envoyerCommande(e) {
@@ -123,7 +122,7 @@ async function main() {
       products: chariot.map((a) => a.idArticle),
     };
     console.log(commande);
-    console.log();
+    
     // • la requête "Post" pour envoyer les informations de la commande au backend.
     fetch("http://localhost:3000/api/products/order", {
       method: "POST",
@@ -139,23 +138,23 @@ async function main() {
             console.log(infoApi.orderId);
             //pour supprimer le panier apres validation au backend;;;;;;;;;
             localStorage.removeItem("panier");
-            window.location.href = "/html/confirmation.html?orderId="+ infoApi.orderId;
+            window.location.href = "/html/confirmation.html?orderId=" + infoApi.orderId;
           })
         }
       })
       .catch(erreur => console.log(erreur.message));
-    }
+  }
 
 
 
-//document.forms["cart__order__form"].addEventListener("submit",function(e){
+  //document.forms["cart__order__form"].addEventListener("submit",function(e){
 
-//})
-    
+  //})
+  //     element.nextElementSibling
   //   formulaireValide()
   //   const inputsTags=document.getElementsByTagName("input");
   //   for (let i = 0;i <inputsTags.length;i++){
-  //     console.log(inputs[i]);
+  //     console.log(inputs[i] element.nextElementSibling);
   //     if (!inputs[i].value){
   //       erreur="t'a fais une boulette";
   //     }
@@ -163,9 +162,9 @@ async function main() {
   //   document.getElementsByClassName("cart__order__form").addEventListener("submit",function(e){
   //     alert('formulaire envoyé!');
   // } )
-  
-    function formulaireValide(formUtilisateur) {
-      console.log("test");
+
+  function formulaireValide() {
+    console.log("test");
     const firstName = document.getElementById("firstName").value
     const lastName = document.getElementById("lastName").value
     const address = document.getElementById("address").value
@@ -174,28 +173,44 @@ async function main() {
 
     const regexName = /^[A-Za-z][A-Za-zéç]+(\s[A-Za-z][A-Za-zéç]+)*$/;
     const regexEmail = /^[A-Za-z0-9.-_]+[@]{1} [a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$ /;
-  //  const regexEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  
-  const regexAddress = /^[A-Za-z0-9éç°',]+(\s[A-Za-z0-9éç°',]+)*$/;
-    const regexCity = /^[A-Z][A-Za-zéç]+(\s[A-Z][A-Za-zéç]+)*$/;
+    //  const regexEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (!regexAddress.test(address)){
+    const regexAddress = /^[A-Ÿa-ÿ0-9éç°',]+(\s[A-Ÿa-ÿ0-9éç°',]+)*$/;
+
+    // if (!regexName.test(firstName)) {
+    //   alert("veuillez renseigner un prénom valide")
+    //   return false;
+    // }
+    const msgErrPrenom="veuillez renseigner un prénom valide"
+    const msgErrNom="veuillez renseigner un nom valide"
+    
+    if(!inputValide(firstName,regexName,msgErrPrenom)){
+      return false;
+    }
+    if (!inputValide(lastName,regexName,msgErrNom)) {
+      return false;
+    }
+    if (!inputValide(address,regexAddress)) {
       alert("veuillez entrer une adresse valide")
       return false
     }
-    
-if(regexEmail.test(email)){
-  alert("veuillez entrer un email valide")
-  return false
-}
-    if (!regexName.test(firstName,lastName,city)) {
-      alert("veuillez renseigner les champs valide")
-      // if (!regexEmail.test(email)) {
-      //   alert("veuillez renseigner les champs valide")
-      return false;
+    if (!regexName.test(city)) {
+      alert("veuillez renseigner une ville valide")
+      return false; 
+    }
+    if (!regexEmail.test(email)) {
+      alert("veuillez entrer un email valide")
+      return false
     }
     return true;
   }
+function inputValide(valeur,regex,message){
+  if (!regex.test(valeur)) {
+    alert(message);
+    return false
+  }
+  return true;
+}
   // const texteAlerte=(value)=>{
   //   return `${value} : symbole et chiffre non autorisés `
   // }
@@ -207,27 +222,27 @@ if(regexEmail.test(email)){
   //       return true
   //     }
   //   }
-    
-    
 
 
 
 
-    
-    // const formulaireUtilisateur=localStorage.getItem("formulaireValide");
-    
-    // const formUtilisateur=JSON.parse(formulaireUtilisateur)
-    
-    // document.querySelector("#firstName").value =order.firstName;
-    // document.querySelector("#lastName").setAttribute('value',formUtilisateur.lastName)
-      // console.log( "curieux", order);
-    
-      
-      // console.log( "blingbling" ,formUtilisateur);
-      
-      
-      
-      
+
+
+
+  // const formulaireUtilisateur=localStorage.getItem("formulaireValide");
+
+  // const formUtilisateur=JSON.parse(formulaireUtilisateur)
+
+  // document.querySelector("#firstName").value =order.firstName;
+  // document.querySelector("#lastName").setAttribute('value',formUtilisateur.lastName)
+  // console.log( "curieux", order);
+
+
+  // console.log( "blingbling" ,formUtilisateur);
+
+
+
+
 
 
 
