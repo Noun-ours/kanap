@@ -122,8 +122,8 @@ async function main() {
       products: chariot.map((a) => a.idArticle),
     };
     console.log(commande);
-    
-    // • la requête "Post" pour envoyer les informations de la commande au backend.
+
+    //  la requête "Post" pour envoyer les informations de la commande au backend.
     fetch("http://localhost:3000/api/products/order", {
       method: "POST",
       headers: {
@@ -147,22 +147,7 @@ async function main() {
 
 
 
-  //document.forms["cart__order__form"].addEventListener("submit",function(e){
-
-  //})
-  //     element.nextElementSibling
-  //   formulaireValide()
-  //   const inputsTags=document.getElementsByTagName("input");
-  //   for (let i = 0;i <inputsTags.length;i++){
-  //     console.log(inputs[i] element.nextElementSibling);
-  //     if (!inputs[i].value){
-  //       erreur="t'a fais une boulette";
-  //     }
-  //   }
-  //   document.getElementsByClassName("cart__order__form").addEventListener("submit",function(e){
-  //     alert('formulaire envoyé!');
-  // } )
-
+  //Compléter la validation du formulaire.
   function formulaireValide() {
     console.log("test");
     const firstName = document.getElementById("firstName").value
@@ -171,111 +156,42 @@ async function main() {
     const city = document.getElementById("city").value
     const email = document.getElementById("email").value
 
-    const regexName = /^[A-Za-z][A-Za-zéç]+(\s[A-Za-z][A-Za-zéç]+)*$/;
-    const regexEmail = /^[A-Za-z0-9.-_]+[@]{1} [a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$ /;
-    //  const regexEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
+      const regexName = /^[A-Ÿa-ÿ][A-Ÿa-ÿéç-]+(\s[A-Ÿa-ÿ][A-Ÿa-ÿéç-]+)*$/;
+    // const regexEmail = /^[A-Za-z0-9.-_]+[@]{1} [a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$ /;
+    const regexEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const regexAddress = /^[A-Ÿa-ÿ0-9éç°',]+(\s[A-Ÿa-ÿ0-9éç°',]+)*$/;
 
-    // if (!regexName.test(firstName)) {
-    //   alert("veuillez renseigner un prénom valide")
-    //   return false;
-    // }
-    const msgErrPrenom="veuillez renseigner un prénom valide"
-    const msgErrNom="veuillez renseigner un nom valide"
-    
-    if(!inputValide(firstName,regexName,msgErrPrenom)){
+   // Valider les inputs du formulaire.
+    const msgErrPrenom = "veuillez renseigner un prénom valide"
+    const msgErrNom = "veuillez renseigner un nom valide"
+    const msgErrAddress="veuillez entrer une adresse valide"
+    const msgErrCity="veuillez renseigner une ville valide"
+    const msgErrEmail="veuillez entrez un email valide"
+    if (!inputValide(firstName, regexName, msgErrPrenom)) {
       return false;
     }
-    if (!inputValide(lastName,regexName,msgErrNom)) {
+    if (!inputValide(lastName, regexName, msgErrNom)) {
       return false;
     }
-    if (!inputValide(address,regexAddress)) {
-      alert("veuillez entrer une adresse valide")
+    if (!inputValide(address, regexAddress,msgErrAddress)) {
       return false
     }
-    if (!regexName.test(city)) {
-      alert("veuillez renseigner une ville valide")
-      return false; 
+    if (!inputValide(city,regexName, msgErrCity)) {     
+      return false;
     }
-    if (!regexEmail.test(email)) {
-      alert("veuillez entrer un email valide")
+    if (!inputValide(email,regexEmail,msgErrEmail)) {
       return false
     }
     return true;
   }
-function inputValide(valeur,regex,message){
-  if (!regex.test(valeur)) {
-    alert(message);
-    return false
+  function inputValide(valeur, regex, message) {
+    if (!regex.test(valeur)) {
+      alert(message);
+      return false
+    }
+    return true;
   }
-  return true;
-}
-  // const texteAlerte=(value)=>{
-  //   return `${value} : symbole et chiffre non autorisés `
-  // }
-  //  //if (!regexEmail.test(email)) {
-  //   // alert (texteAlerte("email") )("veuillez renseigner les champs valide")
-  //   function verifPrenom ( ){
-  //     const userMail =formulaireValide.email;
-  //     if(regexEmail(userMail)){
-  //       return true
-  //     }
-  //   }
-
-
-
-
-
-
-
-  // const formulaireUtilisateur=localStorage.getItem("formulaireValide");
-
-  // const formUtilisateur=JSON.parse(formulaireUtilisateur)
-
-  // document.querySelector("#firstName").value =order.firstName;
-  // document.querySelector("#lastName").setAttribute('value',formUtilisateur.lastName)
-  // console.log( "curieux", order);
-
-
-  // console.log( "blingbling" ,formUtilisateur);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// •	Valider les inputs du formulaire.
-
-// •	Préparer le plan des test.
-
-
-
-
-
-// •	Compléter la validation du formulaire.
-// •	Envoyer les informations de la commande au backend.
-// •	Afficher le code de confirmation sur la page "confirmation.html".
