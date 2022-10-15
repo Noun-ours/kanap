@@ -1,4 +1,4 @@
-// ;;;;;;;;;;pour l'affichage du panier a l'utilisateur:::::::::::::::
+// ::::::::::::pour l'affichage du panier a l'utilisateur:::::::::::::::
 main();
 
 async function main() {
@@ -44,7 +44,7 @@ async function main() {
   }
   affichageDesTotaux();
 
-  //  ::::::::::::: pour la suppression d'un article;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  //                     pour la suppression d'un article 
   // 	Implémenter la suppression d'un article et la modification de la quantité sur la page "cart.html".
 
   const deleteItems = document.querySelectorAll(".deleteItem");
@@ -68,10 +68,9 @@ async function main() {
 
       console.log(articleEnCours.dataset);
       const chariotFind = chariot.find(x => ((x.idArticle == articleEnCours.dataset.id) || (x.couleur == articleEnCours.dataset.color)));
-      // console.log("testnouveau", chariotFind);
       chariotFind.itemQuantity = changeInput.value
       localStorage.setItem("panier", JSON.stringify(chariot));
-      //pour affichage des totaux::::::::::::::::::::::
+      //pour affichage des totaux
       const chariotAvecPrixFind = chariotAvecPrix.find(x => ((x.id == articleEnCours.dataset.id) || (x.couleur == articleEnCours.dataset.color)));
       chariotAvecPrixFind.quantite = changeInput.value;
       affichageDesTotaux();
@@ -80,7 +79,7 @@ async function main() {
     })
   )
 
-  // •	Implémenter l'affichage de la quantité totale et du prix total.
+  // 	Implémenter l'affichage de la quantité totale et du prix total.
   function affichageDesTotaux() {
     let prixTotal = 0;
     let quantiteTotal = 0;
@@ -94,7 +93,7 @@ async function main() {
     spanTotalPrice.textContent = prixTotal.toFixed(2);
   }
 
-  // pour le formulaire et les regex =========
+  // pour le formulaire et les regex 
   const btnCommander = document.getElementById("order");
   btnCommander.addEventListener("click", envoyerCommande);
   function envoyerCommande(e) {
@@ -110,7 +109,7 @@ async function main() {
     const email = document.getElementById("email").value
     console.log(chariot);
 
-    //format exigé pour l'api;;;;;;;;;;;;;;;;;;;
+    //format exigé pour l'api
     const commande = {
       contact: {
         firstName: firstName,
@@ -136,7 +135,7 @@ async function main() {
           console.log("res ok");
           response.json().then(infoApi => {
             console.log(infoApi.orderId);
-            //pour supprimer le panier apres validation au backend;;;;;;;;;
+            //pour supprimer le panier apres validation au backend
             localStorage.removeItem("panier");
             window.location.href = "/html/confirmation.html?orderId=" + infoApi.orderId;
           })
@@ -157,7 +156,6 @@ async function main() {
     const email = document.getElementById("email").value
 
       const regexName = /^[A-Ÿa-ÿ][A-Ÿa-ÿéç-]+(\s[A-Ÿa-ÿ][A-Ÿa-ÿéç-]+)*$/;
-    // const regexEmail = /^[A-Za-z0-9.-_]+[@]{1} [a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$ /;
     const regexEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const regexAddress = /^[A-Ÿa-ÿ0-9éç°',]+(\s[A-Ÿa-ÿ0-9éç°',]+)*$/;
 

@@ -100,9 +100,8 @@ function enregistrementPanier(produit) {
         }
 
     }
-    // stockage du panier dans le localstorage ;;;;;;;;;;;;;;;;;;;;;;;;;
+    // stockage du panier dans le localstorage 
     localStorage.setItem("panier", JSON.stringify(chariot))
-    //    alert("produit selectionne avec succes")
     window.location.href = "cart.html"
 
 }
@@ -120,13 +119,5 @@ function panierValide(couleur, itemQuantity) {
     }
     return true;
 }
-/* •	Sur le page produit, valider le formulaire, par la vérification des inputs de l'utilisateur.
-•	Sur la page panier: lire la panier par "localStorage.getItem" et afficher les contenu sur la page pour l'utilisateur.
-*/
-/*const donne={
-    id:id,
-    itemQuantity:quantity,
-    couleur:color,
-    price: afficherSomme
-}*/
+
 
